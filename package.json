@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.13.3",
     "axios": "^1.6.7",
+    "blob-util": "^2.0.2",
     "concurrently": "^8.2.2",
     "howler": "^2.2.4",
     "ibm-watson": "^8.0.0",

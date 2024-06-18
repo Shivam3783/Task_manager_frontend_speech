@@ -8,6 +8,7 @@ import { getTodoDetails, getUserDetails } from '../../util/GetUser';
 import ToDoServices from '../../services/toDoServices';
 import { useNavigate } from 'react-router';
 
+
 import { Howl, Howler } from 'howler'; // Import Howl and Howler from Howler.js
 
 import axios, { all } from 'axios';
@@ -16,7 +17,9 @@ import { CheckCircleFilled, CheckCircleOutlined, DeleteOutlined, EditOutlined, A
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.3.2/howler.min.js"></script>
 
 // const SERVER_URL = 'http://localhost:3000/api/todo'; // Adjust the server URL
-const SERVER_URL = 'https://application-92.1ehfynoexv7e.au-syd.codeengine.appdomain.cloud/api/todo';
+// const SERVER_URL = 'https://application-92.1ehfynoexv7e.au-syd.codeengine.appdomain.cloud/api/todo';
+const SERVER_URL = 'https://task-manager-backend-7rx3.onrender.com/api/todo';
+
 // const POLLING_INTERVAL = 5000; // Adjust the refresh interval as needed (in milliseconds)
 
 
@@ -742,9 +745,6 @@ function ToDoList() {
         return todo;
       });
 
-
-
-
       // localStorage.setItem('todoswww', updatedTodos?.todos);
       // localStorage.setItem('setall', { ...allToDo, todos: updatedTodos });
 
@@ -765,9 +765,6 @@ function ToDoList() {
 
       // showing the success message to the user that the task is updated
       message.success(`${currentEditItem?.title} Updated Successfully!`);
-
-
-
 
       setLoading(false);
 
@@ -1036,11 +1033,12 @@ function ToDoList() {
         'Content-Type': 'application/json',
         'Accept': 'audio/wav',
         'Authorization': authHeader,
+        
       };
 
-      // Sending the POST request to the API with the output filename specified
-      const response = await axios.post(apiUrl + '?voice=en-US_MichaelV3Voice&accept=audio%2Fwav', JSON.stringify({ text: description }), { headers, responseType: 'blob' });
-
+      // Sending the POST request to the API with the output filename specified %2F , responseType: 'blob'
+      const response = await axios.post(apiUrl + '?voice=en-US_MichaelV3Voice&accept=audio/wav', JSON.stringify({ text: description }), { headers, responseType: 'blob'});
+      
       // console.log('API Response.data:', response.data);
       // console.log('response headers:', (response.headers)); // Access the body as a property
       // console.log('API Response:', response);
@@ -1070,7 +1068,9 @@ function ToDoList() {
           message.success(`Audio Downloaded Successfully!`);
 
         } else {
+
           const sound = new Howl({
+            // src: [audioUrl],
             src: [audioUrl],
             format: ['wav'],
             volume: 1,
@@ -1297,6 +1297,8 @@ function ToDoList() {
 
                     {/* this div shows edit task icon, delete task icon and complete incomplete task icon */}
                     <div className={styles.toDoFooterAction}>
+                    <Tooltip title="Download description" placement='bottom'><CloudDownloadOutlined className={styles.actionIcon} onClick={() => convertToSpeech(item?.description, true)} /></Tooltip>
+
                       <Tooltip title="Audio of description" placement='bottom'><AudioOutlined style={{ color: 'red' }} className={styles.actionIcon} onClick={() => convertToSpeech(item?.description)} /></Tooltip>
 
                       {/* edit task icon */}

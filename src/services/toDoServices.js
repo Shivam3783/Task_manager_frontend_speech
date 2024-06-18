@@ -8,7 +8,9 @@ import { getUserDetails } from '../util/GetUser';
 // specifying our backend server URL
 // const SERVER_URL = 'http://localhost:5000/api/todo'
 // const SERVER_URL = 'http://localhost:3000/api/todo'
-const SERVER_URL = 'https://application-92.1ehfynoexv7e.au-syd.codeengine.appdomain.cloud/api/todo'
+// const SERVER_URL = 'https://application-92.1ehfynoexv7e.au-syd.codeengine.appdomain.cloud/api/todo'
+const SERVER_URL = 'https://task-manager-backend-7rx3.onrender.com/api/todo'
+
 
 
 
